@@ -37,10 +37,15 @@ fn main() {
     l2.sort();
 
     let mut dist: u32 = 0;
+    let mut sim: u32 = 0;
 
     for i in 0..l1.len() {
-        let diff = ((l1[i] - l2[i]).abs() as u32);
+        let diff = (l1[i] - l2[i]).abs() as u32;
         dist = dist + diff;
+
+        let count = l2.iter().filter(|n| n == &&l1[i]).count() as u32;
+        sim = sim + (count * l1[i] as u32);
     }
-    println!("{}", dist);
+    println!("Count: {}", dist);
+    println!("Similarity: {}", sim);
 }
